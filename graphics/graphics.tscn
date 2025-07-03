@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://dgvcqpnx81sms"]
+
+[ext_resource type="Texture2D" uid="uid://c5asoqhvqfbp2" path="res://graphics/qwantani_afternoon_puresky_4k.exr" id="1_gh234"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_80o2y"]
+panorama = ExtResource("1_gh234")
+energy_multiplier = 0.8
+
+[sub_resource type="Sky" id="Sky_6y2vg"]
+sky_material = SubResource("PanoramaSkyMaterial_80o2y")
+
+[sub_resource type="Environment" id="Environment_wdhga"]
+background_mode = 2
+sky = SubResource("Sky_6y2vg")
+ssr_enabled = true
+ssao_enabled = true
+ssil_enabled = true
+sdfgi_enabled = true
+
+[node name="Graphics" type="WorldEnvironment"]
+environment = SubResource("Environment_wdhga")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.89762, -0.241922, -0.368445, 0.44077, 0.49267, 0.750332, 0, -0.835913, 0.548862, 0, 2.45463, 0)
+light_color = Color(1, 0.924112, 0.803862, 1)
