@@ -1,80 +1,19 @@
-[gd_scene load_steps=11 format=3 uid="uid://b54yt1bk2250v"]
+[gd_scene load_steps=4 format=3 uid="uid://b54yt1bk2250v"]
 
-[ext_resource type="PackedScene" uid="uid://dtti30lriyafd" path="res://main/main_ui.tscn" id="1_53q0u"]
 [ext_resource type="PackedScene" uid="uid://dgvcqpnx81sms" path="res://graphics/graphics.tscn" id="2_pjrb6"]
 [ext_resource type="PackedScene" uid="uid://w7rhste1em33" path="res://player/car.tscn" id="3_xwkvk"]
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_xwkvk"]
-size = Vector2(200, 200)
-
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_xwkvk"]
-data = PackedVector3Array(100, 0, 100, -100, 0, 100, 100, 0, -100, -100, 0, 100, -100, 0, -100, 100, 0, -100)
-
-[sub_resource type="PrismMesh" id="PrismMesh_xwkvk"]
-size = Vector3(10, 1, 10)
-
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_c651c"]
-data = PackedVector3Array(0, 0.5, 5, 5, -0.5, 5, -5, -0.5, 5, 0, 0.5, -5, -5, -0.5, -5, 5, -0.5, -5, 0, 0.5, 5, 0, 0.5, -5, 5, -0.5, 5, 0, 0.5, -5, 5, -0.5, -5, 5, -0.5, 5, 0, 0.5, -5, 0, 0.5, 5, -5, -0.5, -5, 0, 0.5, 5, -5, -0.5, 5, -5, -0.5, -5, -5, -0.5, 5, 5, -0.5, 5, -5, -0.5, -5, 5, -0.5, 5, 5, -0.5, -5, -5, -0.5, -5)
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_53q0u"]
-viewport_path = NodePath("Camera3D/XRUI/SubViewport")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pjrb6"]
-resource_local_to_scene = true
-transparency = 2
-alpha_scissor_threshold = 0.5
-alpha_antialiasing_mode = 0
-albedo_texture = SubResource("ViewportTexture_53q0u")
-
-[sub_resource type="QuadMesh" id="QuadMesh_xwkvk"]
-material = SubResource("StandardMaterial3D_pjrb6")
-size = Vector2(1.6, 0.9)
+[ext_resource type="PackedScene" uid="uid://dlx40ftcrme6i" path="res://tracks/track_1.tscn" id="6_kfbq2"]
 
 [node name="Main" type="Node3D"]
 
+[node name="Track" parent="." instance=ExtResource("6_kfbq2")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+
 [node name="Graphics" parent="." instance=ExtResource("2_pjrb6")]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.395406, 0)
-mesh = SubResource("PlaneMesh_xwkvk")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_xwkvk")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D"]
-transform = Transform3D(-0.057233, 0, 0.998361, 0, 1, 0, -0.998361, 0, -0.057233, 0, 0, 13.1345)
-mesh = SubResource("PrismMesh_xwkvk")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D/MeshInstance3D"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/MeshInstance3D/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_c651c")
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-0.999871, 1.3968e-09, 0.0160388, 0.00830927, 0.855337, 0.518005, -0.0137186, 0.518072, -0.855227, 0.143993, 2.72035, -3.6151)
-current = true
-
-[node name="XRUI" type="MeshInstance3D" parent="Camera3D"]
-process_mode = 4
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.55559)
-visible = false
-mesh = SubResource("QuadMesh_xwkvk")
-skeleton = NodePath("../..")
-metadata/_edit_lock_ = true
-
-[node name="SubViewport" type="SubViewport" parent="Camera3D/XRUI"]
-transparent_bg = true
-size = Vector2i(2560, 1440)
-
-[node name="Node2D" type="Node2D" parent="Camera3D/XRUI/SubViewport"]
-
-[node name="MainUI" parent="Camera3D/XRUI/SubViewport/Node2D" instance=ExtResource("1_53q0u")]
-offset_left = 14.0
-offset_top = -4.0
-offset_right = 14.0
-offset_bottom = -4.0
-
 [node name="Car" parent="." instance=ExtResource("3_xwkvk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.540838, 1.35375)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.39964, 10.8221, 61.9134)
+
+[node name="Camera3D" type="Camera3D" parent="Car"]
+transform = Transform3D(-0.999871, 4.19041e-09, 0.0160388, 0.00830927, 0.855337, 0.518005, -0.0137186, 0.518072, -0.855227, 0.143993, 2.17951, -4.11012)
+current = true

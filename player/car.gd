@@ -140,4 +140,8 @@ func activate_drift_particles(enable: bool):
 	# Enable or disable all drift particle systems
 	for particles in drift_particles:
 		particles.emitting = enable
+
+func get_speed() -> float:
+	# Return the current speed in units per second
+	return linear_velocity.length()
 	

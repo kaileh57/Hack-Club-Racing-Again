@@ -249,6 +249,7 @@ shadow_mesh = SubResource("ArrayMesh_jalnx")
 collision_layer = 2
 physics_material_override = ExtResource("1_vukum")
 script = ExtResource("1_ymx53")
+max_torque = 900.0
 drift_particles = [NodePath("WheelBackRight/GPUParticles3D"), NodePath("WheelBackLeft/GPUParticles3D"), NodePath("WheelFrontRight/GPUParticles3D"), NodePath("WheelFrontLeft/GPUParticles3D")]
 
 [node name="Body" type="MeshInstance3D" parent="."]

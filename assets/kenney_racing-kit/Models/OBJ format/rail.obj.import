@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://i23ymgh6clj0"
+path="res://.godot/imported/rail.obj-c5000b68ca21cd466328e702aa5a257c.mesh"
+
+[deps]
+
+files=["res://.godot/imported/rail.obj-c5000b68ca21cd466328e702aa5a257c.mesh"]
+
+source_file="res://assets/kenney_racing-kit/Models/OBJ format/rail.obj"
+dest_files=["res://.godot/imported/rail.obj-c5000b68ca21cd466328e702aa5a257c.mesh", "res://.godot/imported/rail.obj-c5000b68ca21cd466328e702aa5a257c.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false
