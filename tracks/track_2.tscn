@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cm5paappwp0d3"]
+
+[ext_resource type="Script" uid="uid://bce0ppy32088u" path="res://tracks/track.gd" id="1_07cic"]
+[ext_resource type="MeshLibrary" uid="uid://ckxl3vigkr6jn" path="res://assets/track.tres" id="2_qcppt"]
+
+[node name="Track" type="Node3D"]
+script = ExtResource("1_07cic")
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource("2_qcppt")
+cell_size = Vector3(0.1, 0.001, 0.1)
+data = {
+"cells": PackedInt32Array(3, 15, 86, 3, 65531, 86, 3, 65511, 85, 3, 65491, 88, 3, 65481, 87, 3, 65471, 88, 3, 65461, 87, 3, 65487, 1441811, 3, 65477, 1441811, 3, 65467, 1441811, 6, 65490, 1048595, 6, 65480, 1048595, 6, 65471, 1048595, 6, 65441, 1048640, 1, 65436, 1048624, 65509, 65398, 1441840)
+}
