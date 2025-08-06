@@ -1,10 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://b54yt1bk2250v"]
+[gd_scene load_steps=3 format=3 uid="uid://b54yt1bk2250v"]
 
 [ext_resource type="PackedScene" uid="uid://dgvcqpnx81sms" path="res://graphics/graphics.tscn" id="2_pjrb6"]
-[ext_resource type="PackedScene" uid="uid://cs6e0521obycb" path="res://player/car_drift.tscn" id="3_xwkvk"]
 [ext_resource type="PackedScene" uid="uid://dlx40ftcrme6i" path="res://tracks/track_1.tscn" id="6_kfbq2"]
-
-[sub_resource type="Environment" id="Environment_xwkvk"]
 
 [node name="Main" type="Node3D"]
 
@@ -12,7 +9,3 @@
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
 
 [node name="Graphics" parent="." instance=ExtResource("2_pjrb6")]
-environment = SubResource("Environment_xwkvk")
-
-[node name="Car" parent="." instance=ExtResource("3_xwkvk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.46573, 0.0941714, 58.561)
