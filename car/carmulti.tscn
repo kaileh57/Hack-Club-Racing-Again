@@ -1,0 +1,77 @@
+[gd_scene load_steps=7 format=3 uid="uid://ssovesbb4ij2"]
+
+[ext_resource type="Script" path="res://addons/gevp/scripts/vehicle_controllergd.gd" id="1_3rt71"]
+[ext_resource type="PackedScene" uid="uid://fo6kt54q87tf" path="res://addons/gevp/scenes/arcade_car.tscn" id="2_yo3jx"]
+[ext_resource type="PackedScene" uid="uid://b2hlchrj4h2b7" path="res://addons/gevp/scenes/engine_sound.tscn" id="3_hiq3l"]
+[ext_resource type="Script" path="res://addons/gevp/scripts/debug.gd" id="4_a63i8"]
+[ext_resource type="Script" path="res://addons/gevp/scripts/debug_ui.gd" id="5_vltjn"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_17501"]
+height = 4.16105
+
+[node name="VehicleController" type="Node3D" node_paths=PackedStringArray("vehicle_node")]
+script = ExtResource("1_3rt71")
+vehicle_node = NodePath("VehicleRigidBody")
+
+[node name="VehicleRigidBody" parent="." instance=ExtResource("2_yo3jx")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+center_of_mass_mode = 1
+linear_damp_mode = 1
+angular_damp_mode = 1
+stability_upright_damping = 10000.0
+
+[node name="EngineSound" parent="VehicleRigidBody" node_paths=PackedStringArray("vehicle") instance=ExtResource("3_hiq3l")]
+transform = Transform3D(10, 0, -5.68434e-14, 0, 10, 0, 5.68434e-14, 0, 10, 0, 0, 0)
+max_db = -24.0
+autoplay = false
+vehicle = NodePath("..")
+
+[node name="Pivot" type="Node3D" parent="VehicleRigidBody"]
+top_level = true
+
+[node name="Camera3D" type="Camera3D" parent="VehicleRigidBody/Pivot"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 2.33606, 3.25254)
+
+[node name="Debug" type="Node" parent="VehicleRigidBody"]
+script = ExtResource("4_a63i8")
+
+[node name="DebugUI" type="Control" parent="VehicleRigidBody/Debug"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_vltjn")
+metadata/_edit_use_anchors_ = true
+
+[node name="Username" type="Node3D" parent="."]
+top_level = true
+
+[node name="Username" type="Label3D" parent="Username"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.61217, 0)
+billboard = 1
+text = "USERNAME"
+font_size = 50
+outline_size = 20
+
+[node name="DeathDetector" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DeathDetector"]
+transform = Transform3D(1, 0, 0, 0, -0.00382224, -0.999993, 0, 0.999993, -0.00382224, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_17501")
+
+[node name="LapDetector" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00243282, 0)
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LapDetector"]
+transform = Transform3D(1, 0, 0, 0, -0.00382224, -0.999993, 0, 0.999993, -0.00382224, 0, 0.802565, 0)
+shape = SubResource("CapsuleShape3D_17501")
+
+[connection signal="area_entered" from="DeathDetector" to="." method="_on_death_detector_area_entered"]
+[connection signal="area_entered" from="LapDetector" to="." method="_on_lap_detector_area_entered"]
+
